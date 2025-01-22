@@ -1,9 +1,9 @@
 import logging
 import os
 import time
-import pandas
+import pandas as pd
 
-from src.settings import REPORTS_PATH
+from src.settings import REPORTS_PATH, XLSX_FILE
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
@@ -51,10 +51,10 @@ def processing_excel(file_path: str) -> list[dict] | str:
         return "Файл по указанному пути не является xlsx файлом"
 
     try:
-        xlsx = pd.read_excel(file_path)
-        result_list_excel = xlsx.to_dict(orient="records")
+        xl_data = pd.read_excel(file_path)
+        json_data = xl_data.to_json(orient="records", force_ascii=False, indent=4)
         logger.info(f"Функция {processing_excel} завершила работу и вернула результат.")
-        return result_list_excel
+        return json_data
 
     except FileNotFoundError:
         logger.error(f"Запрашиваемый файл не найден или указан некорректный путь ({file_path}) к файлу")
@@ -66,7 +66,9 @@ def processing_excel(file_path: str) -> list[dict] | str:
 
 
 if __name__ == "__main__":
+    xl = processing_excel(XLSX_FILE)
     time_mow = current_time()
     gr = greating_user(time_mow)
     print(time_mow)
     print(gr)
+    print(xl)
