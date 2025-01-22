@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "transactions-explorer-project"
+version = "0.1.0"
+description = "Это курсовая работа. Я буду разрабатывать приложение для анализа транзакций, которые находятся в Excel-файле. Приложение будет генерировать JSON-данные для веб-страниц, формировать Excel-отчеты, а также предоставлять другие сервисы."
+authors = ["Yurov-Andrey <thefesman@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+requests = "^2.32.3"
+pandas = "^2.2.3"
+
+
+[tool.poetry.group.dev.dependencies]
+flake8 = "^7.1.1"
+black = "^24.10.0"
+mypy = "^1.14.1"
+isort = "^5.13.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
